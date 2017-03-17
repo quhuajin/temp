@@ -3643,50 +3643,6 @@ void UICheckAndSetSpeed(void)
     
     // get speed
     g_ucSpeedThrottle = getThrottleSpeed(g_ucInitHallReading);
-
-    // set speed 
-    if(g_ucSpeedThrottle ==0)
-    {
-         g_sParameters.ulTargetSpeed = 0;
-    }
-    else
-    {
-    	 g_sParameters.ulTargetSpeed = UI_BASE_SPEED + (g_ucSpeedThrottle-1) *
-    	                               (UI_MAX_SPEED- UI_BASE_SPEED)/(UI_NUM_SPEED-1);
-    	 //set to minimum speed if the commanded speed is too low
-    	 if(g_sParameters.ulTargetSpeed < g_sParameters.ulMinSpeed)
-    	 {
-    		 g_sParameters.ulTargetSpeed = g_sParameters.ulMinSpeed;
-    	 }
-    	 //also clip on the maximum speed as well
-    	 if(g_sParameters.ulTargetSpeed > g_sParameters.ulMaxSpeed)
-    	 {
-    		 g_sParameters.ulTargetSpeed = g_sParameters.ulMaxSpeed;
-    	 }
-    }
-
-    //change the integral when the command speed is above the switch speed
-    if((g_sParameters.ulTargetSpeed  > UI_GAIN_SWITCH_SPEED) &&
-    		(g_ucIntegralGainChanged == 0x00))
-    {
-    	g_lFAdjI = g_sParameters.lPAdjI;
-    	g_ucIntegralGainChanged = 0x01;
-    }
-
-    //check handpiece trigger board for voltage errors
-	if(g_ulRxDataInt[5] > LIMIT_HP_VOLTAGE1_COUNT + LIMIT_HP_VOLTAGE_NOISE ||
-			g_ulRxDataInt[5] < LIMIT_HP_VOLTAGE1_COUNT - LIMIT_HP_VOLTAGE_NOISE)
-    {
-    	MainSetFault(WARN_HP_VOLTAGE_RANGE);
-    }
-
-	if(g_ulRxDataInt[6] > LIMIT_HP_VOLTAGE2_COUNT + LIMIT_HP_VOLTAGE_NOISE ||
-			g_ulRxDataInt[6] < LIMIT_HP_VOLTAGE2_COUNT - LIMIT_HP_VOLTAGE_NOISE)
-    {
-    	MainSetFault(WARN_HP_VOLTAGE_RANGE);
-    }
-
-
     //read enable and override inputs for later use
     l_cutterEnableOverride = GPIOPinRead(GPIO_PORTB_BASE,CUTTER_ENABLE_BIT | CUTTER_OVERRIDE_BIT);
 
@@ -3694,6 +3650,53 @@ void UICheckAndSetSpeed(void)
 	if ((l_cutterEnableOverride & CUTTER_OVERRIDE_BIT) && cutterOverrideStatus)
 	{
 		cutterOverrideStatus = 0; //clear status bit once override is cleared
+		g_ucSpeedThrottle = getThrottleSpeed(g_ucInitHallReading);
+		// set speed
+			if(g_ucSpeedThrottle ==0)
+			{
+				 g_sParameters.ulTargetSpeed = 0;
+			}
+			else
+			{
+				 g_sParameters.ulTargetSpeed = UI_BASE_SPEED + (g_ucSpeedThrottle-1) *
+											   (UI_MAX_SPEED- UI_BASE_SPEED)/(UI_NUM_SPEED-1);
+				 //set to minimum speed if the commanded speed is too low
+				 if(g_sParameters.ulTargetSpeed < g_sParameters.ulMinSpeed)
+				 {
+					 g_sParameters.ulTargetSpeed = g_sParameters.ulMinSpeed;
+				 }
+				 //also clip on the maximum speed as well
+				 if(g_sParameters.ulTargetSpeed > g_sParameters.ulMaxSpeed)
+				 {
+					 g_sParameters.ulTargetSpeed = g_sParameters.ulMaxSpeed;
+				 }
+			}
+
+			//change the integral when the command speed is above the switch speed
+			if((g_sParameters.ulTargetSpeed  > UI_GAIN_SWITCH_SPEED) &&
+					(g_ucIntegralGainChanged == 0x00))
+			{
+				g_lFAdjI = g_sParameters.lPAdjI;
+				g_ucIntegralGainChanged = 0x01;
+			}
+
+			//check handpiece trigger board for voltage errors
+			if(g_ulRxDataInt[5] > LIMIT_HP_VOLTAGE1_COUNT + LIMIT_HP_VOLTAGE_NOISE ||
+					g_ulRxDataInt[5] < LIMIT_HP_VOLTAGE1_COUNT - LIMIT_HP_VOLTAGE_NOISE)
+			{
+				MainSetFault(WARN_HP_VOLTAGE_RANGE);
+			}
+
+			if(g_ulRxDataInt[6] > LIMIT_HP_VOLTAGE2_COUNT + LIMIT_HP_VOLTAGE_NOISE ||
+					g_ulRxDataInt[6] < LIMIT_HP_VOLTAGE2_COUNT - LIMIT_HP_VOLTAGE_NOISE)
+			{
+				MainSetFault(WARN_HP_VOLTAGE_RANGE);
+			}
+
+
+
+
+
 	}
 
     //check burr enable or override, these signals are active low
@@ -3713,6 +3716,53 @@ void UICheckAndSetSpeed(void)
 			{
 	    		cutterOverrideStatus = 1; //set status bit when override is active
 			}
+    	}
+
+    	if (cutterOverrideStatus==1){
+    		g_ucSpeedThrottle=g_triggerInfo;
+    		// set speed
+    		    if(g_ucSpeedThrottle ==0)
+    		    {
+    		         g_sParameters.ulTargetSpeed = 0;
+    		    }
+    		    else
+    		    {
+    		    	 g_sParameters.ulTargetSpeed = UI_BASE_SPEED + (g_ucSpeedThrottle-1) *
+    		    	                               (UI_MAX_SPEED- UI_BASE_SPEED)/(UI_NUM_SPEED-1);
+    		    	 //set to minimum speed if the commanded speed is too low
+    		    	 if(g_sParameters.ulTargetSpeed < g_sParameters.ulMinSpeed)
+    		    	 {
+    		    		 g_sParameters.ulTargetSpeed = g_sParameters.ulMinSpeed;
+    		    	 }
+    		    	 //also clip on the maximum speed as well
+    		    	 if(g_sParameters.ulTargetSpeed > g_sParameters.ulMaxSpeed)
+    		    	 {
+    		    		 g_sParameters.ulTargetSpeed = g_sParameters.ulMaxSpeed;
+    		    	 }
+    		    }
+
+    		    //change the integral when the command speed is above the switch speed
+    		    if((g_sParameters.ulTargetSpeed  > UI_GAIN_SWITCH_SPEED) &&
+    		    		(g_ucIntegralGainChanged == 0x00))
+    		    {
+    		    	g_lFAdjI = g_sParameters.lPAdjI;
+    		    	g_ucIntegralGainChanged = 0x01;
+    		    }
+
+    		    //check handpiece trigger board for voltage errors
+    			if(g_ulRxDataInt[5] > LIMIT_HP_VOLTAGE1_COUNT + LIMIT_HP_VOLTAGE_NOISE ||
+    					g_ulRxDataInt[5] < LIMIT_HP_VOLTAGE1_COUNT - LIMIT_HP_VOLTAGE_NOISE)
+    		    {
+    		    	MainSetFault(WARN_HP_VOLTAGE_RANGE);
+    		    }
+
+    			if(g_ulRxDataInt[6] > LIMIT_HP_VOLTAGE2_COUNT + LIMIT_HP_VOLTAGE_NOISE ||
+    					g_ulRxDataInt[6] < LIMIT_HP_VOLTAGE2_COUNT - LIMIT_HP_VOLTAGE_NOISE)
+    		    {
+    		    	MainSetFault(WARN_HP_VOLTAGE_RANGE);
+    		    }
+
+
     	}
 
     	//if cutter status is disable previously, change the status
