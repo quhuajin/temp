@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configurations XML_version="1.2" id="configurations_0">
+<configuration XML_version="1.2" id="Blackhawk USB560-BP Emulator_0">
+        <instance XML_version="1.2" desc="Blackhawk USB560-BP Emulator_0" href="connections/BH-USB560bp_Connection.xml" id="Blackhawk USB560-BP Emulator_0" xml="BH-USB560bp_Connection.xml" xmlpath="connections"/>
+        <connection XML_version="1.2" id="Blackhawk USB560-BP Emulator_0">
+            <instance XML_version="1.2" href="drivers/tixds560cs_dap.xml" id="drivers" xml="tixds560cs_dap.xml" xmlpath="drivers"/>
+            <instance XML_version="1.2" href="drivers/tixds560cortexM.xml" id="drivers" xml="tixds560cortexM.xml" xmlpath="drivers"/>
+            <property Type="choicelist" Value="0" id="dataFileRequired"/>
+            <property Type="choicelist" Value="1" id="JTAG TCLK Frequency (MHz)"/>
+            <platform XML_version="1.2" id="platform_0">
+                <instance XML_version="1.2" desc="Stellaris LM3S8971_0" href="devices/lm3s8971.xml" id="Stellaris LM3S8971_0" xml="lm3s8971.xml" xmlpath="devices"/>
+            <device HW_revision="1" XML_version="1.2" description="" id="Stellaris LM3S8971_0" partnum="LM3S8971" simulation="no">
+                    <router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_0" isa="CS_DAP">
+                        <subpath id="subpath_0">
+                            <cpu HW_revision="1.0" XML_version="1.2" description="Cortex M3 CPU" deviceSim="false" id="CORTEX_M3_0" isa="CORTEX_M3">
+                                <property Type="choicelist" Value="0" id="Slave Processor"/>
+                            </cpu>
+                        </subpath>
+                    </router>
+                </device>
+            </platform>
+        </connection>
+    </configuration>
+</configurations>

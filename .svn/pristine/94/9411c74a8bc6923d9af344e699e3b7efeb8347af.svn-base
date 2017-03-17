@@ -1,0 +1,36 @@
+:: Name
+::    get_version.bat
+::
+:: COPYRIGHT
+::    Copyright (c) 2009 Mako Surgical Corp.
+::
+:: SYNTAX
+::    get_version.bat WCPATH >version.h
+::
+:: DESCRIPTION
+::    This scripts generates version string.
+::
+:: SEE ALSO
+:: 
+:: $Revision$
+:: $Date$
+:: $Author$
+
+
+@echo off
+set "line=$$HeadURL$$"
+
+call set "line=%%line:*/Embedded/=%%"
+
+for /f "tokens=1 delims=:" %%a in ('cygpath -u %1') do set wp=%%a 
+
+for /f "tokens=1 delims=:" %%a in ('svnversion %wp%') do set rev=%%a 
+
+for /f "tokens=1,2,3 delims=/" %%a in ("%line%") do set d1=%%a&set d2=%%b
+
+if "%d1%" == "tags" goto TAGFOUND
+echo.const char g_usFirmwareVersion[20] = "%rev%";
+goto END
+:TAGFOUND
+echo.const char g_usFirmwareVersion[20] = "%d2%";
+:END

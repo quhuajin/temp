@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<configurations>
+
+  <configuration id="Signum JTAGjet Emulator_0">
+    <connection desc="Signum JTAGjet Emulator_0" id="Signum JTAGjet Emulator_0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\connections\Signum_Connection.xml">
+      <connectionType Type="Signum_JTAGjet" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\connections\Signum_Connection.xml"/>
+      <property ID="SEPK.POD_DRVR" Name="Emulator Filename" Type="hiddenfield" Value="Signum_JTAGjet.dll" id="Emulator Filename" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\connections\Signum_Connection.xml"/>
+      <property ID="router.adaptive_tclk" Name="Adaptive ICEPICK" Type="hiddenfield" Value="yes" id="Adaptive ICEPICK" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\connections\Signum_Connection.xml"/>
+      <property ID="SIGNUM.POD_PORT" Name="Emulator Serial Number" Type="choicelist" Value="0" id="Emulator Serial Number" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\connections\Signum_Connection.xml">
+        <choice Name="Not specified - use any emulator" value="0x0">
+          <property ID="SIGNUM.SN" Name="unused" Type="hiddenfield" Value="0" id="unused"/>
+        </choice>
+        <choice Name="Connect to specified emulator only" value="0x1">
+          <property ID="SIGNUM.SN" Name="Serial Number of JTAGjet emulator" Type="numericfield" Value="50000" id="Serial Number of JTAGjet emulator"/>
+        </choice>
+      </property>
+      <property ID="SIGNUM.CUSTOM_INIT" Name="Allow Custom JTAG Initialization" Type="choicelist" Value="0" id="Allow Custom JTAG Initialization" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\connections\Signum_Connection.xml">
+        <choice Name="No - only use settings specified below" value="no">
+          <property ID="SIGNUM.JTAG_CLOCK" Name="The JTAG TCLK Frequency" Type="choicelist" Value="0" id="The JTAG TCLK Frequency">
+            <choice Name="Default (10.0 MHz)" value="10000">
+              <property ID="SIGNUM.JTAG_FREQUENCY" Name="unused" Type="hiddenfield" Value="10000" id="unused"/>
+            </choice>
+            <choice Name="Adaptive (using TCKRET pin)" value="0">
+              <property ID="SIGNUM.JTAG_FREQUENCY" Name="unused" Type="hiddenfield" Value="0" id="unused"/>
+            </choice>
+            <choice Name="Fastest (30.0 MHz)" value="30000">
+              <property ID="SIGNUM.JTAG_FREQUENCY" Name="unused" Type="hiddenfield" Value="30000" id="unused"/>
+            </choice>
+            <choice Name="Slow (1.0 MHz)" value="1000">
+              <property ID="SIGNUM.JTAG_FREQUENCY" Name="unused" Type="hiddenfield" Value="1000" id="unused"/>
+            </choice>
+            <choice Name="Custom Frequency (10Hz .. 30MHz)" value="user">
+              <property ID="SIGNUM.JTAG_FREQUENCY" Name="JTAG Clock Frequency [kHz/Hz/MHz]" Type="stringfield" Value="7500 ; same as 7500kHz or 7.5MHz" id="JTAG Clock Frequency [kHz/Hz/MHz]"/>
+            </choice>
+          </property>
+          <property ID="SIGNUM.JTAGBOOT_MODE" Type="choicelist" Value="0" id="The JTAG nTRST Boot-Mode">
+            <choice Name="Disabled - Both EMU pins remain hi-z" value="disable">
+              <property ID="SIGNUM.JTAGBOOT_VALUE" Type="hiddenfield" Value="hiz" id="unused"/>
+            </choice>
+            <choice Name="Enabled - Both EMU pins are high" value="enable">
+              <property ID="SIGNUM.JTAGBOOT_VALUE" Type="hiddenfield" Value="11" id="unused"/>
+            </choice>
+            <choice Name="Enabled - EMU1 is high, EMU0 is low" value="enable">
+              <property ID="SIGNUM.JTAGBOOT_VALUE" Type="hiddenfield" Value="10" id="unused"/>
+            </choice>
+            <choice Name="Enabled - EMU1 is low, EMU0 is high" value="enable">
+              <property ID="SIGNUM.JTAGBOOT_VALUE" Type="hiddenfield" Value="01" id="unused"/>
+            </choice>
+            <choice Name="Enabled - Both EMU pins are low" value="enable">
+              <property ID="SIGNUM.JTAGBOOT_VALUE" Type="hiddenfield" Value="00" id="unused"/>
+            </choice>
+          </property>
+          <property ID="SIGNUM.POWERBOOT_MODE" Type="choicelist" Value="0" id="The Power-On-Reset Boot-Mode">
+            <choice Name="Disabled - Both EMU pins remain hi-z" value="disable">
+              <property ID="SIGNUM.POWERBOOT_VALUE" Type="hiddenfield" Value="hiz" id="unused"/>
+            </choice>
+            <choice Name="Enabled - Both EMU pins are high" value="enable">
+              <property ID="SIGNUM.POWERBOOT_VALUE" Type="hiddenfield" Value="11" id="unused"/>
+            </choice>
+            <choice Name="Enabled - EMU1 is high, EMU0 is low" value="enable">
+              <property ID="SIGNUM.POWERBOOT_VALUE" Type="hiddenfield" Value="10" id="unused"/>
+            </choice>
+            <choice Name="Enabled - EMU1 is low, EMU0 is high" value="enable">
+              <property ID="SIGNUM.POWERBOOT_VALUE" Type="hiddenfield" Value="01" id="unused"/>
+            </choice>
+            <choice Name="Enabled - Both EMU pins are low" value="enable">
+              <property ID="SIGNUM.POWERBOOT_VALUE" Type="hiddenfield" Value="00" id="unused"/>
+            </choice>
+          </property>
+        </choice>
+        <choice Name="Yes - separate window will be used" value="yes"/>
+      </property>
+      <property ID="SIGNUM.DOWNLOAD_CLOCK" Name="Use Faster JTAG Clock During Download" Type="choicelist" Value="0" id="Use Faster JTAG Clock During Download" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\connections\Signum_Connection.xml">
+        <choice Name="No - do not change JTAG clock" value="0"/>
+        <choice Name="10.0 MHz" value="10000"/>
+        <choice Name="15.0 MHz" value="15000"/>
+        <choice Name="20.0 MHz" value="20000"/>
+        <choice Name="30.0 MHz" value="30000"/>
+      </property>
+      <property ID="SIGNUM.OPTION_ENABLE" Name="Driver Maintenance Options" Type="choicelist" Value="0" id="Driver Maintenance Options" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\connections\Signum_Connection.xml">
+        <choice Name="Disabled" value="no"/>
+        <choice Name="Enabled" value="yes">
+          <property ID="SIGNUM.OPTION_STRING" Name="Maintenance option string" Type="stringfield" Value="; none" id="Maintenance option string"/>
+        </choice>
+      </property>
+      <drivers id="drivers" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\drivers\Signum_JTAGjet_cs_dap.xml">
+        <isa ProcID="0x38000405" Type="CS_DAP" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\drivers\Signum_JTAGjet_cs_dap.xml">
+          <driver file="C:\Texas Instruments\ccsv4\emulation\drivers\Signum_JTAGjet_cs_dap.dvr">
+            <connectionType Type="Signum_JTAGjet"/>
+            <property ID="device.identify" Name="DAP TAP ID" Type="numericfield" Value="0x0" id="DAP TAP ID"/>
+            <property ID="subpath.address" Name="Port Number" SubPath="true" Type="numericfield" Value="0x0" id="Port Number"/>
+            <property ID="subpath.initial" Name="Initial Configuration" SubPath="true" Type="choicelist" Value="0x1" id="Initial Configuration">
+              <choice Name="Yes" value="1"/>
+              <choice Name="No" value="0"/>
+            </property>
+            <property ID="subpath.custom" Name="Custom Configuration" SubPath="true" Type="choicelist" Value="0x1" id="Custom Configuration">
+              <choice Name="Yes" value="1"/>
+              <choice Name="No" value="0"/>
+            </property>
+          </driver>
+        </isa>
+        <isa ProcID="0x75803800" Type="Cortex_M3" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\drivers\Signum_JTAGjet_CortexM.xml">
+          <driver file="C:\Texas Instruments\ccsv4\emulation\drivers\Signum_JTAGjet_CortexM.dvr">
+            <connectionType Type="Signum_JTAGjet"/>
+            <property ID="device.identify" Name="AHB Port Number" Type="numericfield" Value="0x0" id="AHB Port Number"/>
+          </driver>
+        </isa>
+      </drivers>
+      <property Type="choicelist" Value="1" id="dataFileRequired">
+        <choice value="auto generate with extra config file">
+          <property Type="filepathfield" Value="C:\Texas Instruments\ccsv4\common\targetdb\boarddat\Signum_JTAGjet.dat" id="dataFileExtraConfig"/>
+        </choice>
+      </property>
+      <platform id="platform_0">
+        <device desc="Stellaris LM3S8971_0" description="" id="Stellaris LM3S8971_0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Devices\lm3s8971.xml" partnum="LM3S8971">
+          <router desc="CS_DAP_0" description="CS_DAP Router" id="CS_DAP_0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Routers\cs_dap.xml" isa="CS_DAP">
+            <register acronym="IP_DUMMY" description="" id="IP_DUMMY" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Routers\cs_dap.xml" width="32"/>
+            <register acronym="IP_TAP_CNTL_0" description="" id="IP_TAP_CNTL_0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Routers\cs_dap.xml" width="32"/>
+            <register acronym="IP_TAP_CNTL_1" description="" id="IP_TAP_CNTL_1" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Routers\cs_dap.xml" width="32"/>
+            <register acronym="IP_TAP_CNTL_2" description="" id="IP_TAP_CNTL_2" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Routers\cs_dap.xml" width="32"/>
+            <register acronym="IP_TAP_CNTL_3" description="" id="IP_TAP_CNTL_3" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Routers\cs_dap.xml" width="32"/>
+            <register acronym="IP_SYS_CNTL_ID" description="" id="IP_SYS_CNTL_ID" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Routers\cs_dap.xml" width="32"/>
+            <subpath id="subpath_0">
+              <property Type="numericfield" Value="16" id="Port Number"/>
+              <property Type="choicelist" Value="1" id="Initial Configuration"/>
+              <property Type="choicelist" Value="1" id="Customer Configuration"/>
+              <cpu desc="CORTEX_M3_0" description="Cortex M3 CPU" id="CORTEX_M3_0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" isa="CORTEX_M3">
+                <register acronym="PC" description="Program Counter" id="PC" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R13" description="General Purpose Register 13 - Stack Pointer" id="SP" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R14" description="General Purpose Register 14 - Link Register" id="LR" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="xPSR" description="Stores the status of interrupt enables and critical processor status signals" id="xPSR" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32">
+                  <bitfield begin="31" description="Stores bit 31 of the result of the instruction. In other words stores the sign of the number" end="31" id="N" range="" resetval="0" rwaccess="R" width="1"/>
+                  <bitfield begin="30" description="Is set to 1 if the result of the operation is zero else stays 0" end="30" id="Z" range="" resetval="0" rwaccess="R" width="1"/>
+                  <bitfield begin="29" description="Stores the value of the carry bit if it occurred in an addition or the borrow bit in a subtraction. In a shift stores the last bit shifted out." end="29" id="C" range="" resetval="0" rwaccess="R" width="1"/>
+                  <bitfield begin="28" description="Set to 1 if an overflow occurred " end="28" id="V" range="" resetval="0" rwaccess="R" width="1"/>
+                  <bitfield begin="27" description="Indicates whether an overflow or a saturation occurred in the enhanced DSP instructions" end="27" id="Q" range="" resetval="0" rwaccess="R" width="1"/>
+                  <bitfield begin="26" description="Reserved" end="8" id="RESV" range="" resetval="0" rwaccess="R" width="19"/>
+                  <bitfield begin="7" description="If set, IRQ is disabled. If cleared IRQ is allowed" end="7" id="I" range="" resetval="1" rwaccess="RW" width="1"/>
+                  <bitfield begin="6" description="If set, FIQ is disabled. If cleared FIQ is allowed" end="6" id="F" range="" resetval="1" rwaccess="RW" width="1"/>
+                  <bitfield begin="5" description="If set ARM is in Thumb mode" end="5" id="T" range="" resetval="0" rwaccess="RW" width="1"/>
+                  <bitfield begin="4" description="Mode of ARM" end="0" id="M" range="" resetval="0x13" rwaccess="RW" width="5"/>
+                </register>
+                <register acronym="R0" description="General Purpose Register 0" id="R0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R1" description="General Purpose Register 1" id="R1" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R2" description="General Purpose Register 2" id="R2" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R3" description="General Purpose Register 3" id="R3" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R4" description="General Purpose Register 4" id="R4" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R5" description="General Purpose Register 5" id="R5" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R6" description="General Purpose Register 6" id="R6" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R7" description="General Purpose Register 7" id="R7" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R8" description="General Purpose Register 8" id="R8" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R9" description="General Purpose Register 9" id="R9" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R10" description="General Purpose Register 10" id="R10" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R11" description="General Purpose Register 11" id="R11" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R12" description="General Purpose Register 12" id="R12" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R13" description="General Purpose Register 13" id="R13" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="R14" description="General Purpose Register 14" id="R14" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="MSP" description="MSP Register" id="MSP" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="PSP" description="PSP Register" id="PSP" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="DSP" description="DSP Register" id="DSP" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <register acronym="CTRL_FAULT_BASE_PRI" description="Control Register" id="CTRL_FAULT_BASE_PRI" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\cpus\cortex_m3.xml" width="32"/>
+                <module accessnumbytes="4" baseaddr="0" description="" hidden="true" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\cortexM3_NotVisible.xml" permissions="p" requestor="Cortex_M3" size="00"/>
+                <module accessnumbytes="4" baseaddr="0x40000000" description="Watchdog Timer register offsets" endaddr="0x40000FFF" id="WATCHDOG0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s300\watchdog.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40004000" description="GPIO register offsets" endaddr="0x40004FFF" id="GPIO_PORTA" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s1110\gpio.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40005000" description="GPIO register offsets" endaddr="0x40005FFF" id="GPIO_PORTB" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s1110\gpio.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40006000" description="GPIO register offsets" endaddr="0x40006FFF" id="GPIO_PORTC" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s1110\gpio.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40007000" description="GPIO register offsets" endaddr="0x40007FFF" id="GPIO_PORTD" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s1110\gpio.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40008000" description="SSI register offsets" endaddr="0x40008FFF" id="SSI0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s101\ssi.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x4000C000" description="UART register offsets" endaddr="0x4000CFFF" id="UART0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s1110\uart.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40024000" description="GPIO register offsets" endaddr="0x40024FFF" id="GPIO_PORTE" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s1110\gpio.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40025000" description="GPIO register offsets" endaddr="0x40025FFF" id="GPIO_PORTF" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s1110\gpio.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40026000" description="GPIO register offsets" endaddr="0x40026FFF" id="GPIO_PORTG" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s1110\gpio.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40027000" description="GPIO register offsets" endaddr="0x40027FFF" id="GPIO_PORTH" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s1110\gpio.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40028000" description="PWM register offsets" endaddr="0x40028FFF" id="PWM" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s317\pwm.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x4002C000" description="QEI register offsets" endaddr="0x4002CFFF" id="QEI0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s601\qei.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40030000" description="Timer register offsets" endaddr="0x40030FFF" id="TIMER0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s301\timer.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40031000" description="Timer register offsets" endaddr="0x40031FFF" id="TIMER1" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s301\timer.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40032000" description="Timer register offsets" endaddr="0x40032FFF" id="TIMER2" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s301\timer.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40033000" description="Timer register offsets" endaddr="0x40033FFF" id="TIMER3" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s301\timer.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40038000" description="ADC register offsets" endaddr="0x40038FFF" id="ADC0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s8971\adc.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x4003C000" description="Comparator register offsets" endaddr="0x4003CFFF" id="COMP" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s308\comp.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40040000" description="CAN register offsets" endaddr="0x40040FFF" id="CAN0" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s2016\can.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x40048000" description="Ethernet MAC register offsets" endaddr="0x40048FFF" id="MAC" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s6100\mac.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x400FC000" description="Hibernation module register addresses" endaddr="0x400FCFFF" id="HIB" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s1110\hib.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x400FD000" description="FLASH register offsets" endaddr="0x400FDFFF" id="FLASH_CTRL" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s1850\flash.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0x400FE000" description="System Control register addresses" endaddr="0x400FEFFF" id="SYSCTL" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s8971\sysctl.xml" permissions="p" size="0x00001000"/>
+                <module accessnumbytes="4" baseaddr="0xE000E000" description="NVIC register addresses" endaddr="0xE000EEFF" id="NVIC" instanceFile="C:\Texas Instruments\ccsv4\common\targetdb\Modules\Stellaris\lm3s1110\nvic.xml" permissions="p" size="0x00000F00"/>
+                <property Type="filepathfield" Value="C:\Texas Instruments\ccsv4\emulation\gel\lm3s8971.gel" id="GEL File"/>
+                <property Type="stringfield" Value="lm3s8971.cmd" id="LinkerCmd"/>
+                <property Type="stringfield" Value=" --silicon_version=7M3 --code_state=16 --abi=eabi -ms -O2 --gcc --ual -D=ccs -D=PART_LM3S8971" id="CompilerBuildOptions"/>
+                <property Type="stringfield" Value=" -m=app_LM3S8971_ccs.map -stack=256 -heap=0" id="LinkerBuildOptions"/>
+                <property Type="stringfield" Value="rtsv7M3_T_le_eabi.lib" id="RTSlib"/>
+                <property Type="stringfield" Value="true" id="IsElfDefault"/>
+                <property Type="stringfield" Value="little" id="Endianness"/>
+                <property Type="stringfield" Value="4.6.1" id="MinCodegenVersion"/>
+              </cpu>
+            </subpath>
+          </router>
+        </device>
+      </platform>
+    </connection>
+  </configuration>
+
+</configurations>
